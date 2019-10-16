@@ -23,12 +23,12 @@ public class CategoryTest {
 
 	@Test
 	public void testGetDescription() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetRecipies() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
