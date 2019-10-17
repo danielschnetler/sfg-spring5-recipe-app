@@ -3,6 +3,7 @@ package guru.springframework.services;
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.Before;
@@ -29,6 +30,21 @@ public class RecipeServiceImplTest {
 		MockitoAnnotations.initMocks(this);
 		
 		recipeService = new RecipeServiceImpl(recipeRepository);
+	}
+	
+	@Test
+	public void getRecipeByIdTest() {
+		Recipe recipe = new Recipe();
+		recipe.setId(1l);
+		
+		when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
+		
+		Recipe returnedRecipe = recipeService.findById(1l);
+		
+		assertNotNull(returnedRecipe);
+		verify(recipeRepository, times(1)).findById(anyLong());
+		verify(recipeRepository, never()).findAll();
+		
 	}
 
 	@Test
