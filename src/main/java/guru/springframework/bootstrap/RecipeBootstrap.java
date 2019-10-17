@@ -138,6 +138,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 				+ "brown.) Refrigerate until ready to serve. Chilling tomatoes hurts their flavor, so if you want to "
 				+ "add chopped tomato to your guacamole, add it just before serving.");
 		guacamoleRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+		guacamoleRecipe.setSource("Simply Recipes");
+		guacamoleRecipe.setServings(4);
 		
 		Notes guacamoleNotes = new Notes();
 		guacamoleNotes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your "
