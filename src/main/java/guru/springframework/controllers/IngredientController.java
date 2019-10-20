@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import guru.springframework.commands.IngredientCommand;
+import guru.springframework.commands.RecipeCommand;
+import guru.springframework.commands.UnitOfMeasureCommand;
 import guru.springframework.services.IngredientService;
 import guru.springframework.services.RecipeService;
 import guru.springframework.services.UnitOfMeasureService;
@@ -59,6 +61,24 @@ public class IngredientController {
 
 		return "/recipe/ingredient/ingredientform";
 	}
+	
+	@GetMapping
+	@RequestMapping("/recipe/{recipeId}/ingredient/new")
+	public String newRecipe(Model model, @PathVariable String recipeId) {
+		
+		RecipeCommand command = recipeService.findCommandById(Long.valueOf(recipeId));
+		//todo Raise exception if null
+		
+		IngredientCommand ingredientCommand = new IngredientCommand();
+		ingredientCommand.setRecipeId(command.getId());
+		ingredientCommand.setUom(new UnitOfMeasureCommand());
+		
+		model.addAttribute("ingredient", ingredientCommand);
+		model.addAttribute("uomList", unitOfMeasureService.findAll());
+		
+		return "/recipe/ingredient/ingredientform";
+	}
+	
 	
 	@PostMapping
 	@RequestMapping("/recipe/{recipeId}/ingredient")
