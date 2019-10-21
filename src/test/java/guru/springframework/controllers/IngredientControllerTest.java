@@ -141,8 +141,7 @@ public class IngredientControllerTest {
 		//Delete returns void so no need to mock 
 		
 		//Then
-		mockMvc.perform(post("/recipe/" + recipeId + "/ingredient/" + ingredientId + "/delete")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
+		mockMvc.perform(get("/recipe/" + recipeId + "/ingredient/" + ingredientId + "/delete"))
 					.andExpect(status().is3xxRedirection())
 					.andExpect(view().name("redirect:/recipe/2/ingredients"));
 		
