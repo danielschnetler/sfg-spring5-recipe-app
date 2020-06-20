@@ -30,12 +30,12 @@ jobs: # a collection of steps
             echo Failed waiting for MySQL && exit 1
       - run:
           name: Install MySQL CLI; create databases and users
+          command: sudo apt-get install default-mysql-client
+      - run:
+          name: Creating MySQL databases
           command: |
-            sudo apt-get install default-mysql-client
             mysql -h 127.0.0.1 -u root -prootpw < configure-mysql.sql
             mysql -h 127.0.0.1 -u sfgdev -pguru --execute="SELECT * FROM sfg_dev.unit_of_measure;"
-
-      
       - run: mvn dependency:go-offline # gets the project dependencies
       
       - save_cache: # saves the project dependencies
