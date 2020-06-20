@@ -3,9 +3,19 @@ spring:
     url: jdbc:mysql://localhost:3307/sfg_dev
     username: sfg_dev_user
     password: guru
+    platform: mysql
   jpa:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
+#comment out after 1st use so that the sql file does not grow everytime the dev profile is run
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            create-source: metadata
+#            scripts:
+#              action: create
+#              create-target: guru_database_create.sql

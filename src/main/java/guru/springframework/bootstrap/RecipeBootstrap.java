@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+@Profile("default")
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	private final RecipeRepository recipeRepository;
@@ -37,6 +39,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		this.categoryRepository = categoryRepository;
 		this.uomRepository = uomRepository;
 		log.debug("Bootstrap Class injected");
+	}
+	
+	@Override
+	@Transactional
+	public void onApplicationEvent(ContextRefreshedEvent event) {
+		recipeRepository.saveAll(getRecipes());
+		log.debug("loading bootstrap data");
+		
 	}
 
 	private List<Recipe> getRecipes() {
@@ -224,12 +234,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		return recipies;
 	}
 
-	@Override
-	@Transactional
-	public void onApplicationEvent(ContextRefreshedEvent event) {
-		recipeRepository.saveAll(getRecipes());
-		log.debug("loading bootstrap data");
-		
-	}
+
 
 }
