@@ -28,9 +28,11 @@ jobs: # a collection of steps
               sleep 1
             done
             echo Failed waiting for MySQL && exit 1
- #     - run:
- #         name: Install MySQL CLI
- #         command: sudo apt-get install default-mysql-client
+      - run:
+          name: Install MySQL CLI
+          command: |
+            sudo apt update
+            sudo apt-get install default-mysql-client
       - run:
           name: Creating MySQL databases and users
           command: |
