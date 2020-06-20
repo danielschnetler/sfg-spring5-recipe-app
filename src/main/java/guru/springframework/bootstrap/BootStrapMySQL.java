@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@Profile({"dev", "prod"})
+@Profile({"dev", "prod", "circle"})
 public class BootStrapMySQL implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
