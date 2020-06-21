@@ -7,6 +7,7 @@ jobs: # a collection of steps
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
       - image: circleci/mysql:8.0.4
+        command: [--default-authentication-plugin=mysql_native_password]
         environment:
           MYSQL_ROOT_PASSWORD: rootpw
           
