@@ -40,6 +40,7 @@ jobs: # a collection of steps
             mysql -h 127.0.0.1 -u root -prootpw < configure-mysql.sql
             mysql -h 127.0.0.1 -u root -prootpw < guru_database_create.sql
             mysql -h 127.0.0.1 -u sfg_dev_user -pguru --execute="SELECT * FROM sfg_dev.unit_of_measure;"
+            
       - run: mvn dependency:go-offline # gets the project dependencies
       
       - save_cache: # saves the project dependencies
